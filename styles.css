@@ -32,15 +32,16 @@ main {
 }
 
 #list-section {
-    width: 35%;
+    width: 40%;
+    background: #f9f9fb;
     padding: 16px;
     overflow-y: auto;
-    background: #ffffff;
     border-right: 1px solid #ddd;
 }
 
 #map-section {
-    width: 65%;
+    width: 60%;
+    background: #eaecef;
 }
 
 #map {
@@ -109,4 +110,5 @@ main {
 
 #close-btn {
     background: #ccc;
+
 }
