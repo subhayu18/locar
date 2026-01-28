@@ -47,6 +47,8 @@ main {
 #map {
     height: 100%;
     width: 100%;
+    border-left: 1px solid #ccc;
+    filter: grayscale(15%) contrast(95%);
 }
 
 .vehicle-card {
@@ -112,3 +114,4 @@ main {
     background: #ccc;
 
 }
+
