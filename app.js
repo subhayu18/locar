@@ -44,21 +44,12 @@ vehicles.forEach(vehicle => {
    Modal Logic
 -------------------------- */
 function openModal(vehicle) {
-    document.getElementById("modal-title").innerText = vehicle.name;
-    document.getElementById("modal-price").innerText =
-        "Price: " + vehicle.price;
-
-    document.getElementById("modal-distance").innerText =
-        "Distance: approx. " + (Math.random() * 3 + 1).toFixed(1) + " km";
-
+document.getElementById("confirm-btn").onclick = () => {
     document.getElementById("modal-status").innerText =
-        "Status: " + vehicle.status;
+        "Booking request recorded. Awaiting confirmation.";
 
-    // Constraint-based interaction:
-    // Disable booking if vehicle is unavailable
-    confirmBtn.disabled = vehicle.status === "Unavailable";
-
-    modal.classList.remove("hidden");
+    document.getElementById("confirm-btn").disabled = true;
+};
 }
 
 // Close modal
@@ -73,3 +64,4 @@ confirmBtn.onclick = () => {
     alert("Booking request recorded successfully.");
     modal.classList.add("hidden");
 };
+
