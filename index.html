@@ -31,18 +31,23 @@
     </section>
 </main>
 
-<!-- Vehicle Detail Modal -->
-<div id="modal" class="hidden">
-    <div class="modal-content">
-        <h3 id="modal-title"></h3>
-        <p id="modal-price"></p>
-        <p id="modal-distance"></p>
-        <p id="modal-status"></p>
+<section id="details-section">
+    <h2>Vehicle Details</h2>
 
-        <button id="confirm-btn">Request Booking</button>
-        <button id="close-btn">Close</button>
+    <div id="details-placeholder">
+        Select a vehicle to view details.
     </div>
-</div>
+
+    <div id="details-content" class="hidden">
+        <h3 id="detail-name"></h3>
+        <p id="detail-price"></p>
+        <p id="detail-distance"></p>
+        <p id="detail-status"></p>
+
+        <button id="request-btn">Request Booking</button>
+        <p id="booking-msg"></p>
+    </div>
+</section>
 
 <!-- Scripts -->
 <script src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js"></script>
@@ -52,3 +57,4 @@
 </body>
 
 </html>
+
