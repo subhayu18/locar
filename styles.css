@@ -180,6 +180,20 @@ main {
     overflow: hidden;
 }
 
+#location-input {
+    margin-bottom: 14px;
+}
 
+#location-input label {
+    display: block;
+    font-size: 12px;
+    color: #555;
+    margin-bottom: 4px;
+}
 
-
+#location-input input {
+    width: 100%;
+    padding: 8px;
+    border: 1px solid #ccc;
+    font-size: 13px;
+}
