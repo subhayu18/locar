@@ -1,38 +1,24 @@
-/* -------------------------
-   INITIAL SETUP
--------------------------- */
-
-// Force modal hidden on load
-document.addEventListener("DOMContentLoaded", () => {
-    document.getElementById("modal").classList.add("hidden");
-});
-
-// System state
 let selectedVehicle = null;
 
 // Initialize map
 const map = L.map("map").setView([30.768, 76.576], 14);
 
-// Add tile layer
+// Tile layer
 L.tileLayer("https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png", {
     attribution: "&copy; OpenStreetMap contributors"
 }).addTo(map);
 
 // DOM references
 const vehicleList = document.getElementById("vehicle-list");
-const modal = document.getElementById("modal");
-const confirmBtn = document.getElementById("confirm-btn");
-const closeBtn = document.getElementById("close-btn");
+const detailsContent = document.getElementById("details-content");
+const placeholder = document.getElementById("details-placeholder");
+const requestBtn = document.getElementById("request-btn");
+const bookingMsg = document.getElementById("booking-msg");
 
-/* -------------------------
-   RENDER VEHICLES
--------------------------- */
-
+// Render vehicles
 vehicles.forEach(vehicle => {
-    /* Vehicle List Card */
     const card = document.createElement("div");
     card.className = "vehicle-card";
-
     card.style.opacity = vehicle.status === "Unavailable" ? "0.6" : "1";
 
     card.innerHTML = `
@@ -41,49 +27,37 @@ vehicles.forEach(vehicle => {
         <p>Status: ${vehicle.status}</p>
     `;
 
-    card.onclick = () => openModal(vehicle);
+    card.onclick = () => showDetails(vehicle);
     vehicleList.appendChild(card);
 
-    /* Map Marker */
     const marker = L.marker([vehicle.lat, vehicle.lng]).addTo(map);
-    marker.bindPopup(vehicle.name);
-    marker.on("click", () => openModal(vehicle));
+    marker.on("click", () => showDetails(vehicle));
 });
 
-/* -------------------------
-   MODAL CONTROL
--------------------------- */
-
-function openModal(vehicle) {
-    if (!vehicle) return;
-
+// Show details panel
+function showDetails(vehicle) {
     selectedVehicle = vehicle;
 
-    document.getElementById("modal-title").innerText = vehicle.name;
-    document.getElementById("modal-price").innerText =
+    placeholder.style.display = "none";
+    detailsContent.classList.remove("hidden");
+
+    document.getElementById("detail-name").innerText = vehicle.name;
+    document.getElementById("detail-price").innerText =
         "Price: " + vehicle.price;
-    document.getElementById("modal-distance").innerText =
+    document.getElementById("detail-distance").innerText =
         "Distance: approx. " + (Math.random() * 3 + 1).toFixed(1) + " km";
-    document.getElementById("modal-status").innerText =
+    document.getElementById("detail-status").innerText =
         "Status: " + vehicle.status;
 
-    confirmBtn.disabled = vehicle.status === "Unavailable";
-
-    modal.classList.remove("hidden");
+    bookingMsg.innerText = "";
+    requestBtn.disabled = vehicle.status === "Unavailable";
 }
 
-// Close modal
-closeBtn.onclick = () => {
-    modal.classList.add("hidden");
-    selectedVehicle = null;
-};
+// Booking request
+requestBtn.onclick = () => {
+    if (!selectedVehicle) return;
 
-// Confirm booking (user-initiated ONLY)
-confirmBtn.onclick = () => {
-    if (!selectedVehicle || confirmBtn.disabled) return;
-
-    document.getElementById("modal-status").innerText =
+    bookingMsg.innerText =
         "Booking request recorded. Awaiting provider confirmation.";
-
-    confirmBtn.disabled = true;
+    requestBtn.disabled = true;
 };
