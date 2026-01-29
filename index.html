@@ -5,7 +5,7 @@
     <title>LOCAR — Location-Aware Car Rental</title>
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-    <!-- Leaflet (Free Maps) -->
+    <!-- Leaflet -->
     <link
         rel="stylesheet"
         href="https://unpkg.com/leaflet@1.9.4/dist/leaflet.css"
@@ -21,43 +21,47 @@
 </header>
 
 <main>
+
+    <!-- LEFT: VEHICLE LIST -->
     <section id="list-section">
         <div id="location-input">
-    <label for="destination">
-        Intended Pickup / Usage Area
-    </label>
-    <input
-        type="text"
-        id="destination"
-        placeholder="e.g., Chandigarh University, Sector 17"
-    />
-</div>
+            <label for="destination">Intended Pickup / Usage Area</label>
+            <input
+                type="text"
+                id="destination"
+                placeholder="e.g., Chandigarh University, Sector 17"
+            />
+        </div>
+
         <h2>Available Vehicles</h2>
         <div id="vehicle-list"></div>
     </section>
 
+    <!-- RIGHT: MAP -->
     <section id="map-section">
         <div id="map"></div>
     </section>
+
+    <!-- BOTTOM: DETAILS (ALWAYS VISIBLE) -->
+    <section id="details-section">
+        <h2>Vehicle Details</h2>
+
+        <div id="details-placeholder">
+            Select a vehicle to view details.
+        </div>
+
+        <div id="details-content" class="hidden">
+            <h3 id="detail-name"></h3>
+            <p id="detail-price"></p>
+            <p id="detail-distance"></p>
+            <p id="detail-status"></p>
+
+            <button id="request-btn">Request Booking</button>
+            <p id="booking-msg"></p>
+        </div>
+    </section>
+
 </main>
-
-<section id="details-section">
-    <h2>Vehicle Details</h2>
-
-    <div id="details-placeholder">
-        Select a vehicle to view details.
-    </div>
-
-    <div id="details-content" class="hidden">
-        <h3 id="detail-name"></h3>
-        <p id="detail-price"></p>
-        <p id="detail-distance"></p>
-        <p id="detail-status"></p>
-
-        <button id="request-btn">Request Booking</button>
-        <p id="booking-msg"></p>
-    </div>
-</section>
 
 <!-- Scripts -->
 <script src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js"></script>
@@ -65,7 +69,4 @@
 <script src="app.js"></script>
 
 </body>
-
 </html>
-
-
