@@ -29,7 +29,9 @@ header p {
 }
 
 main {
-    display: flex;
+    display: grid;
+    grid-template-columns: 40% 60%;
+    grid-template-rows: 1fr 200px;
     height: calc(100vh - 90px);
 }
 
@@ -159,6 +161,23 @@ main {
 #request-btn:disabled {
     background: #999;
     cursor: not-allowed;
+}
+
+#list-section {
+    grid-column: 1 / 2;
+    grid-row: 1 / 2;
+    overflow-y: auto;
+}
+
+#map-section {
+    grid-column: 2 / 3;
+    grid-row: 1 / 2;
+}
+
+#details-section {
+    grid-column: 1 / 3;
+    grid-row: 2 / 3;
+    overflow: hidden;
 }
 
 
